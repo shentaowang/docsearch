@@ -11,4 +11,5 @@ testdoc4:pdf (.pdf)
 the package relay
 pip
 python-docx
+elasticsearch
 
