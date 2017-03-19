@@ -7,6 +7,6 @@ class SimpRead(object):
 	def __init__(self):
 		pass
 
-	def readdocx(self, filename):
+	def read_docx(self, filename):
 		doc = docx.Document(filename)
 		return doc.paragraphs
