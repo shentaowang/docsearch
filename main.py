@@ -1,7 +1,7 @@
 #coding:utf-8
 import getcontent
 
-filename = "testdoc/testdoc2.docx"
+filename = "testdoc/testdoc1.doc"
 
 read = getcontent.SimpRead()
 content  = read.readdocx(filename)
