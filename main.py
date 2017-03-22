@@ -11,7 +11,9 @@ USERNAME = 'light'
 
 read = GetContent.SimpRead()
 es = OperateEs.Operate(HOST, PORT, USERNAME)
-
+#es.create_index()
+es.mapping("word")
+es.query_settings(USERNAME)
 
 content  = read.read_docx(filename)
 for line in content:
