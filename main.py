@@ -3,6 +3,8 @@ import GetContent
 import OperateEs
 from datetime import date
 from elasticsearch import Elasticsearch
+import uuid
+
 
 filename = "testdoc/testdoc2.docx"
 HOST = "127.0.0.1"
@@ -34,7 +36,7 @@ insert_body = {
 		"remark" : remark		
 		}
 
-#main_es.create(index=USERNAME, doc_type=DOCTYPE, id=2, body=insert_body)
+#main_es.create(index=USERNAME, doc_type=DOCTYPE, id=uuid.uuid1(), body=insert_body)
 
 
 search_body = {
@@ -53,6 +55,8 @@ search_body = {
 		}
 result = main_es.search(index=USERNAME, body=search_body)
 for hit in result["hits"]["hits"]:
+	print hit["_source"]["path"]
+	print hit["_source"]["insert_time"]
 	print hit["highlight"]["content"][0]
 
 
