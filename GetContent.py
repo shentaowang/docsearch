@@ -1,8 +1,5 @@
-#encoding:utf-8
+#coding:utf-8
 import docx
-import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
 
 class SimpRead(object):
 	
