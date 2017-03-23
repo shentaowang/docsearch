@@ -11,6 +11,23 @@ USERNAME = 'light'
 
 main_es = Elasticsearch([{"host":HOST, "port":PORT}])
 class_es = OperateEs.Operate(HOST, PORT, USERNAME)
+read_content = GetContent.SimpRead()
 #class_es.initial()
 
-print main_es.indices.get_mapping(index=USERNAME)
+#print main_es.indices.get_mapping(index=USERNAME)
+doc_name = "test"
+path = None
+content = read_content.read_docx(filename)
+weight = 1
+insert_time = datetime.now()
+remark = None
+print content
+
+
+
+
+insert_body = {
+		"doc_name" : doc_name,	
+		"path" : path,
+		"content" : content
+		}
