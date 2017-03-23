@@ -34,24 +34,27 @@ insert_body = {
 		"remark" : remark		
 		}
 
-#main_es.create(index=USERNAME, doc_type=DOCTYPE, id=1, body=insert_body)
+#main_es.create(index=USERNAME, doc_type=DOCTYPE, id=2, body=insert_body)
 
 
 search_body = {
 		"query":{
 			"match":{
-				"content":"搜索"
+				"content":"在时间的无涯"
 				}
 			},
 			"highlight":{
 				"pre_tags":["<tag1>", "<tag2>"],
-				"post_tags":["</tag1>", "/tag2"],
+				"post_tags":["</tag1>", "</tag2>"],
 				"fields":{
 					"content":{}
 					}
 			}
 		}
-print main_es.search(index=USERNAME, body=search_body)
+result = main_es.search(index=USERNAME, body=search_body)
+for hit in result["hits"]["hits"]:
+	print hit["highlight"]["content"][0]
+
 
 
 
