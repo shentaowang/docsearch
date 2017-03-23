@@ -10,8 +10,15 @@ PORT = 9200
 USERNAME = 'light'
 
 es = Elasticsearch([{"host":HOST, "port":PORT}])
-doc_mapping = es.indices.get_mapping(index=USERNAME)
-print doc_mapping
+
+#create the index 
+#doc_index = es.indices.create(index=USERNAME)
+#print doc_index
+
+
+#get the mapping
+#doc_mapping = es.indices.get_mapping(index=USERNAME)
+#print doc_mapping
 
 
 read = GetContent.SimpRead()
