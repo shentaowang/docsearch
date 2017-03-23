@@ -10,10 +10,13 @@ PORT = 9200
 USERNAME = 'light'
 
 es = Elasticsearch([{"host":HOST, "port":PORT}])
+#delete the index
+#print es.indices.delete(index=USERNAME)
 
 #create the index 
 #doc_index = es.indices.create(index=USERNAME)
 #print doc_index
+
 
 #create the mapping
 map_body = {
@@ -24,15 +27,13 @@ map_body = {
 			"pdf":{
 				"_all":{
 					"analyzer":"ik_max_word",
-					"search analyzer":"ik_max_word",
+					"search_analyzer":"ik_max_word",
 					"term_vector":"no",
 					"store":"false"
 					},
 				"properties":{
 					"content":{
 						"type":"text",
-						"store":"no",
-						"term_vector":"with_positions_offsets",
 						"analyzer":"ik_max_word",
 						"include_in_all":"true",
 						"boost":8
@@ -41,23 +42,23 @@ map_body = {
 				}
 			}
 		}
-doc_map = es.create(index=USERNAME, body=map_body)
-print doc_map
+#doc_map = es.indices.create(index=USERNAME, body=map_body)
+#print doc_map
 
 
 #insert the data
 insert_body = {
-		"content":"美国留给中国是个烂摊子吗？,美国"
+		"content":"特朗普上台后中国的日子不好过啊！"
 		}
-#doc_insert = es.create(index=USERNAME, doc_type="pdf", id=1, body=insert_body)
-#print doc_insert
+doc_insert = es.create(index=USERNAME, doc_type="pdf", id=3, body=insert_body)
+print doc_insert
 
 
 #query the data
 search_body = {
 		"query":{
-			"term":{
-				"content":"中"
+			"match":{
+				"content":"中国和美国"
 				}
 			},
 		"highlight":{
@@ -68,13 +69,13 @@ search_body = {
 				}
 			}
 		}
-#doc_search = es.search(index=USERNAME, body=search_body)
-#print doc_search
+doc_search = es.search(index=USERNAME, body=search_body)
+print doc_search
 
 
 #get the mapping
-#doc_mapping = es.indices.get_mapping(index=USERNAME)
-#print doc_mapping
+doc_mapping = es.indices.get_mapping(index=USERNAME)
+print doc_mapping
 
 
 #delete the index
