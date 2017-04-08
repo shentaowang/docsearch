@@ -1,0 +1,7 @@
+<ul class='nav navbar-nav navbar-right'>
+	{%if current_user.is_authendicated()%}
+	<li><a herf="{{url_for('auth.logout')}}">Sing Out </a></li>
+	{%else%}
+	<li><a herf="{{url_for('auth.login')}}">Sing In </a></li>
+	{%endif%}
+</ul>
