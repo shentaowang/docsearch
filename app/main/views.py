@@ -19,6 +19,6 @@ def index():
         return url_for(".index")
     return render_template('index.html',
                           form=form, name=session.get('name'),
-                          known=session.get('known', false),
+                          known=session.get('known', False),
                           current_time=datetime.utcnow())
 
