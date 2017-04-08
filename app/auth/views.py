@@ -3,6 +3,9 @@ from flask.ext.login import login_user, logout_user, login_required
 from . import auth
 from ..models import User
 from .forms import LoginForm
+from werkzeug import secure_filename
+
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'docx'])
 
 @auth.route('/login',methods=['GET', 'POST'])
 def login():
@@ -21,3 +24,31 @@ def logout():
     logout_user()
     flash('You have been logout')
     return redirect(url_for('main.index'))
+
+def allowed_file(filename):
+    return '.' in filename and filename.split('.', 1)[1] in ALLOWED_EXTENSIONS
+
+@auth.route('/upload',methods=['GET', 'POST'])
+@login_required
+def upload_file():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file', filename=filename))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form action="" method=post enctype=multipart/form-data>
+        <p><input type=file name=file>
+            <input type=submit value=Upload>
+    </form>
+    '''
+
+
+
+
+
+

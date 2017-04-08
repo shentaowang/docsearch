@@ -8,7 +8,7 @@ from flask.ext.moment import Moment
 from flask.ext.mail import Mail
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
-from config import config
+from config import config, UPLOAD_FOLDER
 
 bootstrap = Bootstrap()
 moment = Moment()
@@ -21,6 +21,7 @@ login_manager.login_view = 'auth.login'
 def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     config[config_name].init_app(app)
 
     bootstrap.init_app(app)
