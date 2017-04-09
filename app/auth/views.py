@@ -1,3 +1,4 @@
+import os
 from flask import render_template, redirect, request, url_for, flash
 from flask.ext.login import login_user, logout_user, login_required
 from . import auth
@@ -5,6 +6,8 @@ from ..models import User
 from .forms import LoginForm
 from werkzeug import secure_filename
 from config import ALLOWED_EXTENSIONS
+from manage import app
+from flask import send_from_directory
 
 
 @auth.route('/login',methods=['GET', 'POST'])
@@ -36,7 +39,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file', filename=filename))
+            return redirect(url_for('auth.uploaded_file', filename=filename))
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -47,8 +50,7 @@ def upload_file():
     </form>
     '''
 
-
-
-
-
-
+@auth.route('/uploaded_file/<filename>')
+@login_required
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
