@@ -1,3 +1,6 @@
+#-*- coding:utf-8 -*-
+# Author:lightwang.96@gmail.com
+# github:https://github.com/GeniusLight/docsearch
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import Required, Length, Email, Regexp, EqualTo

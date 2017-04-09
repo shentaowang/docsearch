@@ -1,3 +1,6 @@
+#-*- coding:utf-8 -*-
+# Author:lightwang.96@gmail.com
+# github:https://github.com/GeniusLight/docsearch
 import os
 from flask import render_template, redirect, request, url_for, flash
 from flask.ext.login import login_user, logout_user, login_required
@@ -34,12 +37,14 @@ def allowed_file(filename):
 @auth.route('/upload',methods=['GET', 'POST'])
 @login_required
 def upload_file():
+    flash('upload the file')
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('auth.uploaded_file', filename=filename))
+        flash('the file cannot bigger than 16MB')
     return '''
     <!doctype html>
     <title>Upload new File</title>
