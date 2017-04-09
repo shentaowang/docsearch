@@ -8,9 +8,12 @@ from . import auth
 from ..models import User
 from .forms import LoginForm
 from werkzeug import secure_filename
-from config import ALLOWED_EXTENSIONS
+from config import ALLOWED_EXTENSIONS, ES_HOST, ES_PORT
 from manage import app
 from flask import send_from_directory
+from elasticsearch import Elasticsearch
+from datetime import date
+import uuid
 
 
 @auth.route('/login',methods=['GET', 'POST'])
@@ -44,7 +47,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('auth.uploaded_file', filename=filename))
-        flash('the file cannot bigger than 16MB')
+        #flash('the file cannot bigger than 16MB')
     return '''
     <!doctype html>
     <title>Upload new File</title>

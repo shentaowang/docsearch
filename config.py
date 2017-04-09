@@ -6,6 +6,52 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_FOLDER = '/path/to/the/upload'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'docx'])
+ES_HOST = "127.0.0.1"
+ES_PORT = 9200
+
+map_body = {
+	"mappings":{
+		"word":{
+			"_all":{
+				"analyzer":"ik_max_word",
+        		"search_analyzer":"ik_max_word",
+				"term_vector":"no",
+				"store":"false"
+			},
+			"properties":{
+				"doc_name":{
+			        "type":"text",
+					"analyzer":"ik_max_word",
+					"include_in_all":"true",
+					"boost":8
+			},
+			    "path":{
+				    "type":"text",
+				    "analyzer":"ik_max_word",
+				    "include_in_all":"true",
+				    "boost":8
+			    },
+			    "content":{
+				    "type":"text",
+				    "analyzer":"ik_max_word",
+			    	"include_in_all":"true",
+			    	"boost":8
+		    	},
+		    	"importance":{
+			    	"type":"integer"
+		    	},
+		    	"insert_time":{
+			    	"type":"date",
+			    	"format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+		    	},
+		    	"remark":{
+			    	"type":"text"
+			    }
+		    }
+	    }
+    }
+}
+
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
