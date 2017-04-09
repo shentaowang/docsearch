@@ -4,8 +4,8 @@ from . import auth
 from ..models import User
 from .forms import LoginForm
 from werkzeug import secure_filename
+from config import ALLOWED_EXTENSIONS
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'docx'])
 
 @auth.route('/login',methods=['GET', 'POST'])
 def login():
