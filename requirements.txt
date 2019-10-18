@@ -23,7 +23,7 @@ elasticsearch==5.2.0
 enum34==1.0.4
 ethtool==0.8
 firstboot==19.5
-Flask==0.10.1
+Flask==1.0
 Flask-Babel==0.11.1
 Flask-Bootstrap==3.3.5.7
 Flask-Login==0.3.2
