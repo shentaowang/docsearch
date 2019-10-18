@@ -115,7 +115,7 @@ SSSDConfig==1.14.0
 targetcli-fb===2.1.fb41
 Tempita==0.5.2
 urlgrabber==3.10
-urllib3==1.10.2
+urllib3==1.24.2
 urwid==1.1.1
 visitor==0.1.2
 Werkzeug==0.11.5
