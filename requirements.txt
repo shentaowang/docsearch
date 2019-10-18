@@ -118,7 +118,7 @@ urlgrabber==3.10
 urllib3==1.10.2
 urwid==1.1.1
 visitor==0.1.2
-Werkzeug==0.11.5
+Werkzeug==0.15.3
 Whoosh==2.7.4
 WTForms==2.1
 yum-langpacks==0.4.2
