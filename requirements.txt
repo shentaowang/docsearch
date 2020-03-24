@@ -2,7 +2,7 @@ alembic==0.8.5
 Babel==2.3.4
 backports.ssl-match-hostname==3.4.0.2
 beautifulsoup4==4.4.1
-bleach==1.4.2
+bleach==3.1.2
 blinker==1.4
 blivet==0.61.15.59
 Brlapi==0.6.0
