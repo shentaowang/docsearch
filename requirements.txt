@@ -53,7 +53,7 @@ ipapython==4.4.0
 IPy==0.75
 itsdangerous==0.24
 javapackages==1.0.0
-Jinja2==2.8
+Jinja2==2.11.3
 jwcrypto==0.2.1
 kitchen==1.1.1
 kmod==0.1
