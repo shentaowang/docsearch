@@ -54,7 +54,7 @@ IPy==0.75
 itsdangerous==0.24
 javapackages==1.0.0
 Jinja2==2.8
-jwcrypto==0.2.1
+jwcrypto==1.4
 kitchen==1.1.1
 kmod==0.1
 langtable==0.0.31
